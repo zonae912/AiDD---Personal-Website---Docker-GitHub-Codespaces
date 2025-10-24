@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Evan Zona{% endblock %}
+
+{% block description %}Showcase of Evan Zona's professional and academic projects with descriptions and links.{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>My Projects</h1>
+        <p>A showcase of my professional work, academic projects, and personal initiatives</p>
+        <div class="resume-actions">
+            <a href="{{ url_for('add_project') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add New Project
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects-section">
+    <div class="container">
+        
+        {% if projects %}
+            <!-- Projects Table -->
+            <div class="projects-table-container">
+                <table class="projects-table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Technologies</th>
+                            <th>Duration</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for project in projects %}
+                            <tr>
+                                <td class="project-image-cell">
+                                    <img src="{{ url_for('static', filename='images/' + project.image_filename) }}" 
+                                         alt="{{ project.title }}" 
+                                         class="project-thumbnail">
+                                </td>
+                                <td class="project-title-cell">
+                                    <strong>{{ project.title }}</strong>
+                                    {% if project.role %}
+                                        <br><small class="project-role">{{ project.role }}</small>
+                                    {% endif %}
+                                </td>
+                                <td class="project-description-cell">
+                                    {{ project.description[:200] }}{% if project.description|length > 200 %}...{% endif %}
+                                </td>
+                                <td class="project-category-cell">
+                                    {% if project.category %}
+                                        <span class="category-badge">{{ project.category }}</span>
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td class="project-tech-cell">
+                                    {% if project.technologies %}
+                                        {{ project.technologies[:50] }}{% if project.technologies|length > 50 %}...{% endif %}
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td class="project-duration-cell">
+                                    {{ project.duration or 'N/A' }}
+                                </td>
+                                <td class="project-link-cell">
+                                    {% if project.project_url %}
+                                        <a href="{{ project.project_url }}" target="_blank" class="btn btn-sm btn-primary">
+                                            <i class="fas fa-external-link-alt"></i> View
+                                        </a>
+                                    {% else %}
+                                        <span class="text-muted">N/A</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <!-- No Projects Message -->
+            <div class="no-projects">
+                <div class="no-projects-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>No Projects Yet</h3>
+                <p>Start by adding your first project!</p>
+                <a href="{{ url_for('add_project') }}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Add Your First Project
+                </a>
+            </div>
+        {% endif %}
+        
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Interested in Collaborating?</h2>
+            <p>I'm always open to discussing new projects and opportunities</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Get In Touch</a>
+                <a href="{{ url_for('resume') }}" class="btn btn-secondary">View My Resume</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

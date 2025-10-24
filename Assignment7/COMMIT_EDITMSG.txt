@@ -1,0 +1,25 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   .coverage
+#	new file:   .dockerignore
+#	new file:   .github/workflows/tests.yml
+#	new file:   Dockerfile
+#	new file:   README_DOCKER.md
+#	new file:   README_TESTING.md
+#	new file:   TEST_SUMMARY.md
+#	modified:   app.py
+#	new file:   conftest.py
+#	new file:   docker-compose.yml
+#	new file:   pytest.ini
+#	modified:   requirements.txt
+#	new file:   run_tests.ps1
+#	new file:   run_tests.sh
+#	new file:   test_dal.py
+#	new file:   test_routes.py
+#
